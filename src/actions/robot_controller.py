@@ -275,7 +275,7 @@ class RobotController:
         angle = max(min_pan, min(max_pan, angle))
         
         try:
-            self.px.set_camera_servo1_angle(angle)
+            self.px.set_cam_pan_angle(angle)
             self.camera_pan = angle
             self.logger.debug(f"Cámara pan: {angle}°")
         
@@ -297,7 +297,7 @@ class RobotController:
         angle = max(min_tilt, min(max_tilt, angle))
         
         try:
-            self.px.set_camera_servo2_angle(angle)
+            self.px.set_cam_tilt_angle(angle)
             self.camera_tilt = angle
             self.logger.debug(f"Cámara tilt: {angle}°")
         
