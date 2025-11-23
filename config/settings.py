@@ -7,7 +7,7 @@ Configuración del sistema de feedback loop para PiCar-X
 # ============================================================================
 
 # Frecuencia del loop (Hz)
-LOOP_FREQUENCY = 2  # 2 ciclos por segundo (reducido para evitar sobrecarga)
+LOOP_FREQUENCY = 1  # 1 ciclo por segundo (reducido para evitar sobrecarga de cámara)
 
 # Timeout para operaciones (segundos)
 SENSOR_TIMEOUT = 1.0
@@ -27,7 +27,7 @@ VISION_CONFIG = {
     
     # Habilitar detección
     'enable_face_detect': False,  # Deshabilitado para reducir carga de CPU
-    'enable_color_detect': True,
+    'enable_color_detect': False,  # Deshabilitado temporalmente para debug
     'enable_qr_detect': False,
     'enable_gesture_detect': False,
     'enable_traffic_sign_detect': False,
