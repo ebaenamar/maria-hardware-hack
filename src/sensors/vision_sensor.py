@@ -62,6 +62,10 @@ class VisionSensor:
             # Iniciar display (web y local si está disponible)
             Vilib.display(local=False, web=True)
             
+            # Esperar a que la cámara se estabilice
+            time.sleep(2)
+            self.logger.info("Cámara inicializada, esperando estabilización...")
+            
             # Habilitar detecciones según configuración
             if self.config['enable_face_detect']:
                 Vilib.face_detect_switch(True)

@@ -81,9 +81,20 @@ class RobotController:
             # Inicializar PiCar-X
             self.px = Picarx()
             
-            # Inicializar música y TTS
-            self.music = Music()
-            self.tts = TTS()
+            # Inicializar música y TTS (opcional)
+            try:
+                self.music = Music()
+                self.logger.info("Música inicializada")
+            except Exception as e:
+                self.logger.warning(f"No se pudo inicializar música: {e}")
+                self.music = None
+            
+            try:
+                self.tts = TTS()
+                self.logger.info("TTS inicializado")
+            except Exception as e:
+                self.logger.warning(f"No se pudo inicializar TTS (pico2wave no instalado): {e}")
+                self.tts = None
             
             # Configurar posición inicial
             self.stop()

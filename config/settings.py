@@ -7,7 +7,7 @@ Configuración del sistema de feedback loop para PiCar-X
 # ============================================================================
 
 # Frecuencia del loop (Hz)
-LOOP_FREQUENCY = 10  # 10 ciclos por segundo
+LOOP_FREQUENCY = 2  # 2 ciclos por segundo (reducido para evitar sobrecarga)
 
 # Timeout para operaciones (segundos)
 SENSOR_TIMEOUT = 1.0
@@ -26,7 +26,7 @@ VISION_CONFIG = {
     'hflip': False,
     
     # Habilitar detección
-    'enable_face_detect': True,
+    'enable_face_detect': False,  # Deshabilitado para reducir carga de CPU
     'enable_color_detect': True,
     'enable_qr_detect': False,
     'enable_gesture_detect': False,
