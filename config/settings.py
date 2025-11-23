@@ -1,55 +1,55 @@
 """
-Configuración del sistema de feedback loop para PiCar-X
+Feedback loop system configuration for PiCar-X
 """
 
 # ============================================================================
-# CONFIGURACIÓN DEL FEEDBACK LOOP
+# FEEDBACK LOOP CONFIGURATION
 # ============================================================================
 
-# Frecuencia del loop (Hz)
-LOOP_FREQUENCY = 1  # 1 ciclo por segundo (reducido para evitar sobrecarga de cámara)
+# Loop frequency (Hz)
+LOOP_FREQUENCY = 1  # 1 cycle per second (reduced to avoid camera overload)
 
-# Timeout para operaciones (segundos)
+# Timeout for operations (seconds)
 SENSOR_TIMEOUT = 1.0
 ACTION_TIMEOUT = 2.0
 
 # ============================================================================
-# CONFIGURACIÓN DE VISIÓN
+# VISION CONFIGURATION
 # ============================================================================
 
 VISION_CONFIG = {
-    # Resolución de la cámara
+    # Camera resolution
     'resolution': (640, 480),
     
-    # Flip de la cámara
+    # Camera flip
     'vflip': False,
     'hflip': False,
     
-    # Habilitar detección
-    'enable_face_detect': False,  # Deshabilitado para reducir carga de CPU
-    'enable_color_detect': False,  # Deshabilitado temporalmente para debug
+    # Enable detection
+    'enable_face_detect': False,  # Disabled to reduce CPU load
+    'enable_color_detect': False,  # Temporarily disabled for debugging
     'enable_qr_detect': False,
     'enable_gesture_detect': False,
     'enable_traffic_sign_detect': False,
     
-    # Colores a detectar (red, orange, yellow, green, blue, purple)
+    # Colors to detect (red, orange, yellow, green, blue, purple)
     'default_color': 'red',
     
-    # Umbrales de detección
-    'min_object_size': 50,  # píxeles
+    # Detection thresholds
+    'min_object_size': 50,  # pixels
     'confidence_threshold': 0.5,
     
-    # Guardar screenshots
+    # Save screenshots
     'save_screenshots': True,
     'screenshot_dir': '/home/pi/Pictures/feedback_loop/',
 }
 
 # ============================================================================
-# CONFIGURACIÓN DE AUDIO
+# AUDIO CONFIGURATION
 # ============================================================================
 
 AUDIO_CONFIG = {
-    # Configuración de captura
+    # Capture configuration
     'sample_rate': 16000,
     'channels': 1,
     'chunk_size': 4000,
@@ -58,9 +58,9 @@ AUDIO_CONFIG = {
     'vosk_model_path': '/home/pi/vosk-model-small-en-us-0.15',
     'language': 'en-us',  # en-us, cn, es, etc.
     
-    # Detección de voz
-    'silence_threshold': 500,  # Umbral de silencio
-    'silence_duration': 1.5,   # Segundos de silencio para terminar
+    # Voice detection
+    'silence_threshold': 500,  # Silence threshold
+    'silence_duration': 1.5,   # Seconds of silence to finish
     
     # Wake word
     'enable_wake_word': True,
@@ -68,20 +68,20 @@ AUDIO_CONFIG = {
 }
 
 # ============================================================================
-# CONFIGURACIÓN DEL MOTOR DE DECISIÓN
+# DECISION ENGINE CONFIGURATION
 # ============================================================================
 
 DECISION_CONFIG = {
-    # Tipo de motor: 'rule_based' o 'llm'
+    # Engine type: 'rule_based' or 'llm'
     'engine_type': 'rule_based',
     
-    # Configuración LLM (si engine_type == 'llm')
+    # LLM configuration (if engine_type == 'llm')
     'llm_provider': 'openai',  # openai, anthropic
     'llm_model': 'gpt-4o-mini',
     'llm_temperature': 0.7,
     'llm_max_tokens': 500,
     
-    # Prioridades de decisión
+    # Decision priorities
     'priority_weights': {
         'obstacle_avoidance': 1.0,
         'object_tracking': 0.8,
@@ -89,43 +89,43 @@ DECISION_CONFIG = {
         'exploration': 0.3,
     },
     
-    # Umbrales
+    # Thresholds
     'obstacle_distance_threshold': 20,  # cm
     'object_tracking_distance': 50,     # cm
 }
 
 # ============================================================================
-# CONFIGURACIÓN DE ACCIONES DEL ROBOT
+# ROBOT ACTIONS CONFIGURATION
 # ============================================================================
 
 ROBOT_CONFIG = {
-    # Velocidades
+    # Speeds
     'default_speed': 30,      # 0-100
     'slow_speed': 15,
     'fast_speed': 50,
     
-    # Ángulos de dirección
+    # Steering angles
     'steering_center': 0,
     'steering_left': -30,
     'steering_right': 30,
     
-    # Ángulos de cámara
+    # Camera angles
     'camera_pan_center': 0,
     'camera_pan_range': (-90, 90),
     'camera_tilt_center': -10,
     'camera_tilt_range': (-30, 30),
     
-    # Comportamientos
-    'scan_interval': 2.0,      # segundos entre escaneos
-    'track_smoothness': 0.3,   # factor de suavizado (0-1)
+    # Behaviors
+    'scan_interval': 2.0,      # seconds between scans
+    'track_smoothness': 0.3,   # smoothing factor (0-1)
     
-    # Seguridad
+    # Safety
     'emergency_stop_distance': 10,  # cm
-    'max_continuous_movement': 5.0,  # segundos
+    'max_continuous_movement': 5.0,  # seconds
 }
 
 # ============================================================================
-# CONFIGURACIÓN DE LOGGING
+# LOGGING CONFIGURATION
 # ============================================================================
 
 LOGGING_CONFIG = {
@@ -136,11 +136,11 @@ LOGGING_CONFIG = {
 }
 
 # ============================================================================
-# REGLAS DE COMPORTAMIENTO
+# BEHAVIOR RULES
 # ============================================================================
 
 BEHAVIOR_RULES = {
-    # Regla: Si detecta cara, seguirla
+    # Rule: If face detected, follow it
     'follow_face': {
         'enabled': True,
         'priority': 0.9,
@@ -150,7 +150,7 @@ BEHAVIOR_RULES = {
         'actions': ['track_face', 'move_forward_slow'],
     },
     
-    # Regla: Si detecta color objetivo, acercarse
+    # Rule: If target color detected, approach it
     'approach_color': {
         'enabled': True,
         'priority': 0.8,
@@ -161,7 +161,7 @@ BEHAVIOR_RULES = {
         'actions': ['track_color', 'move_forward'],
     },
     
-    # Regla: Si hay obstáculo cercano, evitarlo
+    # Rule: If obstacle nearby, avoid it
     'avoid_obstacle': {
         'enabled': True,
         'priority': 1.0,
@@ -171,7 +171,7 @@ BEHAVIOR_RULES = {
         'actions': ['stop', 'turn_random', 'move_forward'],
     },
     
-    # Regla: Si escucha comando de voz, ejecutarlo
+    # Rule: If voice command heard, execute it
     'voice_command': {
         'enabled': True,
         'priority': 0.95,
@@ -181,7 +181,7 @@ BEHAVIOR_RULES = {
         'actions': ['parse_command', 'execute_command'],
     },
     
-    # Regla: Si no hay nada interesante, explorar
+    # Rule: If nothing interesting, explore
     'explore': {
         'enabled': True,
         'priority': 0.3,
@@ -193,30 +193,30 @@ BEHAVIOR_RULES = {
 }
 
 # ============================================================================
-# COMANDOS DE VOZ
+# VOICE COMMANDS
 # ============================================================================
 
 VOICE_COMMANDS = {
-    # Movimiento
-    'forward': ['forward', 'go forward', 'move forward', 'adelante'],
-    'backward': ['backward', 'go back', 'move back', 'atrás'],
-    'left': ['left', 'turn left', 'go left', 'izquierda'],
-    'right': ['right', 'turn right', 'go right', 'derecha'],
-    'stop': ['stop', 'halt', 'freeze', 'para', 'detente'],
+    # Movement
+    'forward': ['forward', 'go forward', 'move forward'],
+    'backward': ['backward', 'go back', 'move back'],
+    'left': ['left', 'turn left', 'go left'],
+    'right': ['right', 'turn right', 'go right'],
+    'stop': ['stop', 'halt', 'freeze'],
     
-    # Modos
-    'follow_me': ['follow me', 'follow', 'sígueme'],
-    'explore': ['explore', 'look around', 'explora'],
-    'track_red': ['track red', 'find red', 'busca rojo'],
-    'track_blue': ['track blue', 'find blue', 'busca azul'],
+    # Modes
+    'follow_me': ['follow me', 'follow'],
+    'explore': ['explore', 'look around'],
+    'track_red': ['track red', 'find red'],
+    'track_blue': ['track blue', 'find blue'],
     
-    # Cámara
-    'look_up': ['look up', 'mira arriba'],
-    'look_down': ['look down', 'mira abajo'],
-    'look_left': ['look left', 'mira izquierda'],
-    'look_right': ['look right', 'mira derecha'],
+    # Camera
+    'look_up': ['look up'],
+    'look_down': ['look down'],
+    'look_left': ['look left'],
+    'look_right': ['look right'],
     
-    # Sistema
-    'take_photo': ['take photo', 'take picture', 'toma foto'],
-    'status': ['status', 'report', 'estado'],
+    # System
+    'take_photo': ['take photo', 'take picture'],
+    'status': ['status', 'report'],
 }
