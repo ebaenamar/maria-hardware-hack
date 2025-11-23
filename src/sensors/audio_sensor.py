@@ -17,7 +17,7 @@ try:
     AUDIO_AVAILABLE = True
 except ImportError:
     AUDIO_AVAILABLE = False
-    logging.warning("pyaudio o vosk no disponibles")
+    logging.warning("pyaudio or vosk not available")
 
 from config.settings import AUDIO_CONFIG
 
@@ -65,7 +65,7 @@ class AudioSensor:
             True si se inició correctamente
         """
         if not AUDIO_AVAILABLE:
-            self.logger.error("pyaudio o vosk no disponibles")
+            self.logger.error("pyaudio or vosk not available")
             return False
         
         try:

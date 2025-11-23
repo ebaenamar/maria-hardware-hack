@@ -499,7 +499,7 @@ class RobotController:
         """
         # Verificar obstáculo de emergencia
         if self.has_obstacle(self.config['emergency_stop_distance']):
-            self.logger.warning("¡Obstáculo de emergencia detectado!")
+            self.logger.warning("Emergency obstacle detected!")
             self.stop()
             return False
         
@@ -507,7 +507,7 @@ class RobotController:
         if self.movement_start_time:
             elapsed = time.time() - self.movement_start_time
             if elapsed > self.config['max_continuous_movement']:
-                self.logger.warning("Tiempo máximo de movimiento alcanzado")
+                self.logger.warning("Maximum movement time reached")
                 self.stop()
                 return False
         

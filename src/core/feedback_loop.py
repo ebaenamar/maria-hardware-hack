@@ -102,7 +102,7 @@ class FeedbackLoop:
         
         # Inicializar audio (opcional)
         if not self.audio.start():
-            self.logger.warning("Audio no disponible, continuando sin audio")
+            self.logger.warning("Audio not available, continuing without audio")
         
         self.logger.info("Sistema inicializado correctamente")
         return True
@@ -404,7 +404,7 @@ class FeedbackLoop:
         """
         # Verificar seguridad
         if not self.robot.check_safety():
-            self.logger.warning("Verificación de seguridad falló")
+            self.logger.warning("Safety check failed")
             return
         
         # Aquí se pueden agregar más evaluaciones y ajustes
